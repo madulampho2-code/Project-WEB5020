@@ -3,7 +3,7 @@
 ## 3.4 Responsive Screenshots
 
 ### Desktop View
-![Desktop](desktop.png)
+![Desktop](Desktop.png)
 
 ### Tablet View (768px)
 ![Tablet](tablet.png)
