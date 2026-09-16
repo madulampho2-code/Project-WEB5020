@@ -3,13 +3,13 @@
 ## 3.4 Responsive Screenshots
 
 ### Desktop View
-![Desktop](images/screenshots/desktop.png)
+![Desktop](desktop.png)
 
 ### Tablet View (768px)
-![Tablet](images/screenshots/tablet.png)
+![Tablet](tablet.png)
 
 ### Mobile View (480px)
-![Mobile](images/screenshots/mobile.png)
+![Mobile](mobile.png)
 
 ## 3.1 Media Queries Implemented
 - @media (max-width: 768px)
