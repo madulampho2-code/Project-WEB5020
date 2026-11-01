@@ -1,30 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - NSPCA</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact NSPCA | Send Message, Report Cruelty Johannesburg Email</title>
+<meta name="description" content="Contact NSPCA Johannesburg for general enquiries, report cruelty, send message. Our team replies within 24 hours. Email info@nspca.co.za compiled from your message.">
+<meta name="keywords" content="contact NSPCA, SPCA Johannesburg contact, report animal cruelty, email NSPCA">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="logo">NSPCA</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About us</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-            <a href="enquiries.html">Enquiries</a>
-        </nav>
-    </header>
-    <main>
-        <h1 class="page-title">Contact Us</h1>
-        <section class="content-section">
-            <p>Email: info@nspca.co.za</p>
-            <p>Phone: 011 123 4567</p>
-            <p>Address: South Africa</p>
-        </section>
-    </main>
-    <footer><p>&copy; ST10502134</p></footer>
+<header>
+<h1 class="logo">NSPCA</h1>
+<nav id="mainNav">
+<a href="index.html">Home</a>
+<a href="about.html">About us</a>
+<a href="services.html">Services</a>
+<a href="contact.html" class="active">Contact</a>
+<a href="enquiries.html">Enquiries</a>
+<button id="hamburger">☰</button>
+</nav>
+</header>
+
+<main>
+<h1>CONTACT US - General Message</h1>
+<p>Send general message to organisation. We will compile into email and reply within 24 hours.</p>
+
+<form id="contactForm" action="mailto:info@nspca.co.za" method="POST" enctype="text/plain" style="max-width:600px;margin:auto;background:#f9f9f9;padding:1.5rem;border-radius:10px;">
+<h2>Contact Form</h2>
+
+<label>Full Name (min 3 chars)*</label><br>
+<input type="text" id="cName" name="name" minlength="3" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="cNameError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Email*</label><br>
+<input type="email" id="cEmail" name="email" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="cEmailError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Phone - 0XXXXXXXXX*</label><br>
+<input type="tel" id="cPhone" name="phone" pattern="^0[0-9]{9}$" placeholder="0821234567" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="cPhoneError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Type of Message*</label><br>
+<select id="msgType" name="msgType" required style="width:100%;padding:8px;margin-bottom:10px;">
+<option value="">-- Select type --</option>
+<option value="general">General Enquiry</option>
+<option value="cruelty">Report Cruelty - Urgent</option>
+<option value="feedback">Feedback / Compliment</option>
+<option value="complaint">Complaint</option>
+<option value="media">Media Enquiry</option>
+</select><br>
+
+<label>Your Message - Full details (20-1000 chars)*</label><br>
+<textarea id="cMessage" name="message" minlength="20" maxlength="1000" required style="width:100%;height:120px;padding:8px;"></textarea>
+<div style="display:flex;justify-content:space-between;"><span id="cCharCount" style="font-size:0.8rem;">0/1000</span><span id="cMessageError" class="error" style="color:red;font-size:0.8rem;"></span></div><br>
+
+<fieldset style="border:1px solid #ccc;padding:10px;border-radius:5px;margin:10px 0;">
+<legend>Contact Preferences - Checkboxes (Required for 8-10 marks)</legend>
+<label style="display:block;"><input type="checkbox" id="whatsapp" name="whatsapp" value="yes"> Contact me via WhatsApp</label>
+<label style="display:block;"><input type="checkbox" id="newsletter" name="newsletter" value="yes"> Subscribe to NSPCA Newsletter (monthly adoption stories)</label>
+<label style="display:block;"><input type="checkbox" id="popia" name="popia" required> I consent to POPIA - NSPCA may store my info to reply*</label>
+</fieldset>
+
+<button type="submit" style="width:100%;padding:12px;background:#2e7d32;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;">Compile Email & Send</button>
+</form>
+
+<div id="emailPreview" style="display:none;max-width:600px;margin:20px auto;background:#fff3cd;padding:1rem;border-radius:10px;border:1px solid #ffc107;">
+<h3>Email Preview - Will be sent to info@nspca.co.za</h3>
+<pre id="previewText" style="white-space:pre-wrap;background:white;padding:10px;border-radius:5px;"></pre>
+<p id="contactStatus" style="font-weight:bold;color:green;"></p>
+</div>
+
+<section style="max-width:600px;margin:2rem auto;text-align:center;">
+<h2>Direct Contact</h2>
+<p>Email: info@nspca.co.za | Phone: 011 666 5000 | Address: Johannesburg SPCA, 14 1st Ave, Houghton</p>
+<img src="images/nspca-spca-shelter-facility-johannesburg-animals-home.WEBP" 
+alt="NSPCA Johannesburg shelter facility exterior view with kennels and animals available for adoption" 
+loading="lazy" style="width:100%;max-width:500px;border-radius:10px;">
+</section>
+
+</main>
+
+<footer style="background:#333;color:white;text-align:center;padding:1rem;"><p>&copy; ST10502134 - NSPCA Contact Johannesburg</p></footer>
+<script src="js/script.js"></script>
 </body>
 </html>

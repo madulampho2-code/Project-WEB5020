@@ -1,34 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enquiries - NSPCA</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enquire NSPCA | Adoption Cost R1200 R800, Volunteer Sponsor Availability Johannesburg</title>
+<meta name="description" content="Enquire about NSPCA adoption fees dogs R1200 cats R800, volunteer, sponsor R500. Get instant cost estimate and availability for Johannesburg shelter.">
+<meta name="keywords" content="NSPCA enquiry, adoption cost R1200, sponsor cost, volunteer SPCA, availability Johannesburg">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="logo">NSPCA</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About us</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-            <a href="enquiries.html">Enquiries</a>
-        </nav>
-    </header>
-    <main>
-        <h1 class="page-title">Enquiries</h1>
-        <form class="form-box">
-            <label>Name</label>
-            <input type="text" placeholder="Your name">
-            <label>Email</label>
-            <input type="email" placeholder="Your email">
-            <label>Message</label>
-            <textarea placeholder="Your message"></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </main>
-    <footer><p>&copy; ST10502134</p></footer>
+<header>
+<h1 class="logo">NSPCA</h1>
+<nav id="mainNav">
+<a href="index.html">Home</a>
+<a href="about.html">About us</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+<a href="enquiries.html" class="active">Enquiries</a>
+<button id="hamburger">☰</button>
+</nav>
+</header>
+
+<main>
+<h1>ENQUIRIES - Adopt, Volunteer, Sponsor, Donate</h1>
+<p>Enquire about services, products, volunteer or sponsor. Get instant cost and availability response.</p>
+
+<form id="enquiryForm" action="https://formspree.io/f/xdemo" method="POST" style="max-width:600px;margin:auto;background:#f9f9f9;padding:1.5rem;border-radius:10px;">
+<h2>Enquiry Form - All fields required</h2>
+
+<label>Full Name (min 3 chars)*</label><br>
+<input type="text" id="fullName" name="fullName" minlength="3" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="fullNameError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Email Address*</label><br>
+<input type="email" id="email" name="email" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="emailError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Phone - SA format 0XXXXXXXXX (10 digits)*</label><br>
+<input type="tel" id="phone" name="phone" pattern="^0[0-9]{9}$" placeholder="e.g. 0821234567" required style="width:100%;padding:8px;margin-bottom:5px;">
+<span id="phoneError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Type of Enquiry*</label><br>
+<select id="enquiryType" name="enquiryType" required style="width:100%;padding:8px;margin-bottom:10px;">
+<option value="">-- Select --</option>
+<option value="dog-adoption" data-price="1200">Dog Adoption - R1200</option>
+<option value="cat-adoption" data-price="800">Cat Adoption - R800</option>
+<option value="sponsor" data-price="500">Sponsor Kennel - R500/month</option>
+<option value="volunteer" data-price="0">Volunteer - Free</option>
+<option value="donate" data-price="0">Donate - Any amount</option>
+</select><br>
+
+<label>Quantity - How many pets? (1-5)*</label><br>
+<input type="number" id="quantity" name="quantity" min="1" max="5" value="1" required style="width:100%;padding:8px;margin-bottom:10px;"><br>
+
+<label>Preferred Visit Date*</label><br>
+<input type="date" id="visitDate" name="visitDate" required style="width:100%;padding:8px;margin-bottom:10px;">
+<span id="dateError" class="error" style="color:red;font-size:0.8rem;"></span><br>
+
+<label>Message - Tell us about your home (max 500 chars)*</label><br>
+<textarea id="message" name="message" maxlength="500" minlength="20" required style="width:100%;height:100px;padding:8px;"></textarea>
+<div style="display:flex;justify-content:space-between;"><span id="charCount" style="font-size:0.8rem;">0/500</span><span id="messageError" class="error" style="color:red;font-size:0.8rem;"></span></div><br>
+
+<label style="display:block;margin:10px 0;"><input type="checkbox" id="secureYard" required> I have secure yard / landlord permission*</label><br>
+
+<button type="submit" style="width:100%;padding:12px;background:#2e7d32;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;">Calculate Cost & Check Availability</button>
+</form>
+
+<div id="enquiryResult" style="display:none;max-width:600px;margin:20px auto;background:#e8f5e9;padding:1.5rem;border-radius:10px;border:2px solid #2e7d32;">
+<h2>Your Enquiry Response - Cost & Availability</h2>
+<p id="resultCost" style="font-size:1.2rem;font-weight:bold;"></p>
+<p id="resultAvailability" style="font-weight:bold;"></p>
+<p id="resultDetails"></p>
+<p style="color:green;font-weight:bold;">✓ Form validated successfully! Submitted via AJAX. We will reply within 24 hours.</p>
+</div>
+
+<section style="max-width:600px;margin:2rem auto;">
+<h2>Cost Breakdown</h2>
+<ul>
+<li>Dog Adoption: R1200 - Includes vaccination, sterilization, microchip, deworming</li>
+<li>Cat Adoption: R800 - Includes vaccination, sterilization, microchip</li>
+<li>Sponsor: R500/month - Feed and shelter one animal</li>
+<li>Volunteer: Free - 4 hours/week</li>
+</ul>
+</section>
+
+</main>
+
+<footer style="background:#333;color:white;text-align:center;padding:1rem;"><p>&copy; ST10502134 - NSPCA Enquiries | <a href="contact.html" style="color:white">General Contact</a></p></footer>
+<script src="js/script.js"></script>
 </body>
 </html>

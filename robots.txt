@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ST10502134.github.io/NSPCA-Website/sitemap.xml

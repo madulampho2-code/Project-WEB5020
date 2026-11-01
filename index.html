@@ -1,43 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NSPCA WEBSITE</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSPCA South Africa | Adopt, Save & Donate - Animal Rescue Johannesburg</title>
+<meta name="description" content="Welcome to NSPCA South Africa. Save, adopt and donate to animals needing homes in Johannesburg. Browse adoptable pets, volunteer and enquire today.">
+<meta name="keywords" content="NSPCA, SPCA Johannesburg, adopt dog South Africa, animal rescue, animal shelter, save animals">
+<meta name="author" content="ST10502134 MPHO MADULA">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="logo">Welcome to NSPCA</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About us</a>
-            <a href="services.html">Services</a>
-            <a href="contact.html">Contact</a>
-            <a href="enquiries.html">Enquiries</a>
-        </nav>
-    </header>
+<header>
+<h1 class="logo">NSPCA</h1>
+<nav id="mainNav">
+<a href="index.html" class="active">Home</a>
+<a href="about.html">About us</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+<a href="enquiries.html">Enquiries</a>
+<button id="hamburger">☰</button>
+</nav>
+</header>
+<main>
+<p>Welcome to the SPCA site where you get a chance to Save, Adopt and give a second chance to animals in need.</p>
 
-    <main>
-        
-            <picture>
-  <source srcset="images/front.WEBP" media="(max-width: 768px)">
-  <img src="images/front.WEBP" srcset="images/front.WEBP 800w, images/front.WEBP 400w" sizes="(max-width: 768px) 100vw, 50vw" alt="NSPCA front">
-</picture>
-    
+<section>
+<h2>Find Your New Best Friend - Dynamic Search</h2>
+<input type="text" id="petSearch" placeholder="Search breed e.g. Labrador, cat, age..." style="width:100%;padding:10px;border-radius:5px;border:1px solid #ccc;">
+<div id="dynamicPets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;"></div>
+</section>
 
-        <p class="intro">Welcome to the SPCA site where you get a chance to Save, Adopt and give love to animals.</p>
+<p style="text-align:center;font-weight:bold;color:green;margin:2rem 0;">ANY ONE CAN SAVE AN ANIMAL EVEN YOU</p>
 
-        <img src="images/body.WEBP" 
-     srcset="images/body.WEBP 800w, images/body.WEBP 400w" 
-     sizes="(max-width: 768px) 100vw, 50vw" 
-     alt="Animals needing home">
+<img src="images/nspca-rescued-animals-needing-home-adoption.WEBP" 
+alt="Rescued dogs and cats at NSPCA Johannesburg shelter needing loving home for adoption" 
+loading="lazy" style="width:100%;border-radius:10px;">
 
-        <p class="highlight">ANY ONE CAN SAVE AN ANIMAL EVEN YOU</p>
-    </main>
+<section>
+<h2>Happy Adoptions - Lightbox Gallery (Click)</h2>
+<div id="gallery" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;"></div>
+</section>
 
-    <footer>
-        <p>&copy; ST10502134</p>
-    </footer>
+<div id="lightbox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;flex-direction:column;z-index:1000;">
+<span class="close" style="position:absolute;top:20px;right:30px;color:white;font-size:40px;cursor:pointer;">&times;</span>
+<img id="lightboxImg" src="" style="max-width:90%;max-height:80%;border-radius:10px;">
+<div id="lightboxCaption" style="color:white;margin-top:10px;"></div>
+</div>
+
+<section style="margin-top:2rem;">
+<div class="tab-buttons">
+<button class="tab-btn active" data-tab="save" style="padding:10px;">Save</button>
+<button class="tab-btn" data-tab="adopt" style="padding:10px;">Adopt</button>
+<button class="tab-btn" data-tab="donate" style="padding:10px;">Donate</button>
+</div>
+<div id="save" class="tab-content active" style="padding:1rem;border:1px solid #ddd;"><h3>Save a Life</h3><p>Report cruelty 24hr hotline, volunteer, foster.</p></div>
+<div id="adopt" class="tab-content" style="padding:1rem;border:1px solid #ddd;display:none;"><h3>Adopt Today</h3><p>Adoption fees: Cats R800, Dogs R1200. Includes vaccination, sterilization, microchip. 12 pets ready this week.</p></div>
+<div id="donate" class="tab-content" style="padding:1rem;border:1px solid #ddd;display:none;"><h3>Donate</h3><p>Your donation feeds, heals and shelters rescued animals. Sponsor a kennel R500/month.</p></div>
+</section>
+
+<section>
+<h2>FAQ - Accordion</h2>
+<div class="accordion-item"><h3 class="accordion-header" style="cursor:pointer;background:#eee;padding:10px;">How much is adoption? +</h3><div class="accordion-body" style="display:none;padding:10px;"><p>From R800 for cats, R1200 for dogs. Includes vet checks.</p></div></div>
+<div class="accordion-item"><h3 class="accordion-header" style="cursor:pointer;background:#eee;padding:10px;">Where are you located? +</h3><div class="accordion-body" style="display:none;padding:10px;"><p>Main: Johannesburg, plus Sandton and Randburg branches. See map below.</p></div></div>
+</section>
+
+<section><h2>Find NSPCA Near You - Interactive Map</h2><div id="map" style="height:400px;border-radius:10px;border:1px solid #ccc;"></div></section>
+
+</main>
+<footer style="background:#333;color:white;text-align:center;padding:1rem;margin-top:2rem;"><p>&copy; ST10502134 MPHO MADULA - NSPCA WEBSITE - Part 3 2026 | <a href="sitemap.xml" style="color:white">Sitemap</a> | <a href="robots.txt" style="color:white">Robots</a></p></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
